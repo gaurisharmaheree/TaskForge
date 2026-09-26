@@ -18,7 +18,7 @@ Because job handling is dispatched by `type`, this system isn't built around any
 
 ## Architecture
 
-![Async-Queue Architecture](./architecture.png)
+<img src="./architecture.png" alt="Async-Queue Architecture" width="800">
 
 The system consists of:
 
@@ -28,7 +28,7 @@ The system consists of:
 
 ### Why asyncio
 
-Most background jobs spend the bulk of their time *waiting* on I/O — a network call, a database write, an external API — rather than doing heavy computation. `asyncio.create_task()` lets multiple jobs run concurrently on a single event loop, switching between them whenever one is waiting, without the overhead of managing OS threads. Since jobs here are typically I/O-bound rather than CPU-bound, this gives most of the benefit of concurrency without the complexity of `threading` or the overkill of `multiprocessing`.
+Most background jobs spend the bulk of their time _waiting_ on I/O — a network call, a database write, an external API — rather than doing heavy computation. `asyncio.create_task()` lets multiple jobs run concurrently on a single event loop, switching between them whenever one is waiting, without the overhead of managing OS threads. Since jobs here are typically I/O-bound rather than CPU-bound, this gives most of the benefit of concurrency without the complexity of `threading` or the overkill of `multiprocessing`.
 
 ## Job Format
 
@@ -45,9 +45,9 @@ The system accepts any job in this shape — `type` and `payload` are generic, s
 }
 ```
 
-* `type` — identifies which handler should process this job
-* `retries` — maximum retry attempts
-* `payload` — job-specific data, structure depends on `type`
+- `type` — identifies which handler should process this job
+- `retries` — maximum retry attempts
+- `payload` — job-specific data, structure depends on `type`
 
 ## Worker
 
@@ -81,12 +81,12 @@ Job outcomes are logged for tracking and debugging.
 
 ## Tech Stack
 
-* Python 3.11+
-* FastAPI — API / Producer
-* Redis — job queue
-* redis.asyncio — asynchronous Redis client
-* asyncio — concurrent job execution
-* Pydantic — request validation
+- Python 3.11+
+- FastAPI — API / Producer
+- Redis — job queue
+- redis.asyncio — asynchronous Redis client
+- asyncio — concurrent job execution
+- Pydantic — request validation
 
 ## Running Locally
 
