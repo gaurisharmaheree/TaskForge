@@ -64,15 +64,6 @@ Job types are not limited to email. Other examples could be image processing, PD
 
 Each `send_email` job pauses for 2 seconds to simulate something slow. Sending 3 jobs at once and having all 3 finish within the same second — not 6 seconds apart — shows they were actually processed at the same time, not one after another:
 
-```
-Sending email to a@gmail.com with subject A
-2026/10/03 13:20:21 [worker-2] Task completed successfully
-Sending email to b@gmail.com with subject B
-2026/10/03 13:20:21 [worker-0] Task completed successfully
-Sending email to c@gmail.com with subject C
-2026/10/03 13:20:21 [worker-1] Task completed successfully
-```
-
 ![Concurrency proof](./pictures/concurrency-proof.png)
 
 ## Tech Stack
